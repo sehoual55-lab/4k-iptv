@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block nothing sensitive; allow full crawl
+Disallow: /assets/js/
+
+Sitemap: https://4k-iptv.online/sitemap.xml

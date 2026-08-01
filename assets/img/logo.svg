@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" role="img" aria-label="4K IPTV logo">
+  <defs>
+    <linearGradient id="lg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2D6BFF"/><stop offset=".55" stop-color="#8B5CF6"/><stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="44" height="44" rx="13" fill="url(#lg)"/>
+  <rect x="2" y="2" width="44" height="44" rx="13" fill="#0B1020" opacity=".12"/>
+  <path d="M17 15v10.5h6M23 15v18" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M28.5 15v18M28.5 24l6.5-9M31 21l4.5 12" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
