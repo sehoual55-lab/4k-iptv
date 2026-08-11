@@ -272,3 +272,27 @@
 
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",build); else build();
 })();
+
+/* Hero CTA: send the primary "Get Started / Começar / Commencer" button to the packages section */
+(function(){
+  function isTrial(a){ try{ return /start my free trial/i.test(decodeURIComponent(a.getAttribute("href")||"")); }catch(e){ return false; } }
+  function packagesSection(){
+    var pb=document.querySelector(".plan-buy");
+    if(pb){ return pb.closest("section")||pb.closest("[id]")||pb.parentElement; }
+    return document.querySelector('#planos,#tarifs,#packages,#plans,#pricing,[id*="plano"],[id*="tarif"],[id*="package"]');
+  }
+  function wire(){
+    document.querySelectorAll("a.btn.btn-primary").forEach(function(a){
+      if(!isTrial(a) || a.__pkgWired) return;
+      a.__pkgWired=true;
+      a.addEventListener("click", function(e){
+        var sec=packagesSection();
+        if(sec){ e.preventDefault(); e.stopImmediatePropagation(); sec.scrollIntoView({behavior:"smooth", block:"start"}); }
+      }, true);
+    });
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", wire); else wire();
+})();
+
+/* smooth anchor scrolling for CTA -> packages */
+(function(){ try{ document.documentElement.style.scrollBehavior="smooth"; }catch(e){} })();
