@@ -14,14 +14,6 @@
     CURRENCY: "$",
     EXTRA_FACTOR: 0.85,   // each extra connection costs 85% of base (15% discount)
     CONN_MIN: 1, CONN_MAX: 5,
-    PAYLINKS: {
-      paypal:    "http://paypal.me/hotbitgroup",
-      applepay:  "https://checkout.revolut.com/pay/c1bb49ac-36ef-4e6c-ab9e-54a6eb1530e0",
-      googlepay: "https://checkout.revolut.com/pay/c1bb49ac-36ef-4e6c-ab9e-54a6eb1530e0",
-      card:      "https://checkout.revolut.com/pay/c1bb49ac-36ef-4e6c-ab9e-54a6eb1530e0",
-      crypto:    "https://checkout.revolut.com/pay/c1bb49ac-36ef-4e6c-ab9e-54a6eb1530e0",
-      default:   "https://checkout.revolut.com/pay/c1bb49ac-36ef-4e6c-ab9e-54a6eb1530e0"
-    },
     PLANS: {
       bronze:    { name:"Plano Bronze",    months:12, bonusMonths:0, price:39.99 },
       gold:      { name:"Plano Gold",      months:15, bonusMonths:3, price:49.99, popular:true },
@@ -36,36 +28,60 @@
       name:"Full name", namePh:"John Smith", phone:"Phone number", email:"Email address", emailPh:"you@example.com",
       pay:"Payment method", conn:"Simultaneous connections", cU1:"Connection", cU:"Connections", duration:"Duration", bonus:"Bonus",
       total:"Total", submit:"Complete order", secure:"Your information is transmitted securely.", guarantee:"7-day money-back guarantee.",
-      months:"Months", free:"Months Free", okTitle:"Order received!", okBody:"Thank you! Click “Pay now” to complete payment, or confirm on WhatsApp to activate your subscription.",
+      months:"Months", free:"Months Free", okTitle:"Order received!", okBody:"Thank you! Confirm on WhatsApp to finalise and activate your subscription.",
       paynow:"💳 Pay now", wa:"Confirm on WhatsApp", again:"Place another order",
       eName:"Please enter your name.", ePhone:"Invalid phone number.", eEmail:"Invalid email.", ePay:"Choose a payment method.",
-      msg:function(p,d,c,pr,n,m,l){return "Hi 4K IPTV! I'd like to order the "+p+" ("+d+", "+c+") for "+pr+". Name: "+n+". Payment: "+m+(l?(". Payment link: "+l):".");} },
+      msg:function(p,d,c,pr,n,m){return "Hi! I'm "+n+" \ud83d\udc4b\n\n"+
+        "\ud83d\uded2 Order: "+p+"\n"+
+        "\u23f1 Duration: "+d+"\n"+
+        "\ud83d\udcfa Connections: "+c+"\n"+
+        "\ud83d\udcb0 Total: "+pr+"\n"+
+        "\ud83d\udcb3 Payment: "+m+"\n\n"+
+        "Please send me the payment details to complete my order \u2705";} },
     fr: { eyebrow:"Abonnement 4K IPTV", title:"Finalisez votre commande", sub:"Entrez vos informations pour activer votre abonnement.",
       name:"Nom complet", namePh:"Jean Dupont", phone:"Téléphone", email:"Adresse email", emailPh:"vous@exemple.fr",
       pay:"Moyen de paiement", conn:"Connexions simultanées", cU1:"Connexion", cU:"Connexions", duration:"Durée", bonus:"Bonus",
       total:"Total", submit:"Valider ma commande", secure:"Vos informations sont transmises en toute sécurité.", guarantee:"Satisfait ou remboursé 7 jours.",
-      months:"Mois", free:"Mois Offerts", okTitle:"Commande enregistrée !", okBody:"Merci ! Cliquez sur « Payer maintenant » pour régler, ou confirmez sur WhatsApp pour activer votre abonnement.",
+      months:"Mois", free:"Mois Offerts", okTitle:"Commande enregistrée !", okBody:"Merci ! Confirmez sur WhatsApp pour finaliser et activer votre abonnement.",
       paynow:"💳 Payer maintenant", wa:"Confirmer sur WhatsApp", again:"Passer une autre commande",
       eName:"Veuillez entrer votre nom.", ePhone:"Numéro invalide.", eEmail:"Email invalide.", ePay:"Choisissez un moyen de paiement.",
-      msg:function(p,d,c,pr,n,m,l){return "Bonjour 4K IPTV, je souhaite commander "+p+" ("+d+", "+c+") pour "+pr+". Nom : "+n+". Paiement : "+m+(l?(". Lien de paiement : "+l):".");} },
+      msg:function(p,d,c,pr,n,m){return "Bonjour ! Je suis "+n+" \ud83d\udc4b\n\n"+
+        "\ud83d\uded2 Commande : "+p+"\n"+
+        "\u23f1 Dur\u00e9e : "+d+"\n"+
+        "\ud83d\udcfa Connexions : "+c+"\n"+
+        "\ud83d\udcb0 Total : "+pr+"\n"+
+        "\ud83d\udcb3 Paiement : "+m+"\n\n"+
+        "Merci de m'envoyer les informations de paiement pour finaliser ma commande \u2705";} },
     it: { eyebrow:"Abbonamento 4K IPTV", title:"Completa il tuo ordine", sub:"Inserisci i tuoi dati per attivare l'abbonamento.",
       name:"Nome completo", namePh:"Mario Rossi", phone:"Telefono", email:"Indirizzo email", emailPh:"tu@esempio.it",
       pay:"Metodo di pagamento", conn:"Connessioni simultanee", cU1:"Connessione", cU:"Connessioni", duration:"Durata", bonus:"Bonus",
       total:"Totale", submit:"Completa l'ordine", secure:"Le tue informazioni sono trasmesse in modo sicuro.", guarantee:"Soddisfatti o rimborsati 7 giorni.",
-      months:"Mesi", free:"Mesi Gratis", okTitle:"Ordine ricevuto!", okBody:"Grazie! Clicca su « Paga ora » per completare il pagamento, o conferma su WhatsApp per attivare l'abbonamento.",
+      months:"Mesi", free:"Mesi Gratis", okTitle:"Ordine ricevuto!", okBody:"Grazie! Conferma su WhatsApp per completare e attivare il tuo abbonamento.",
       paynow:"💳 Paga ora", wa:"Conferma su WhatsApp", again:"Effettua un altro ordine",
       eName:"Inserisci il tuo nome.", ePhone:"Numero non valido.", eEmail:"Email non valida.", ePay:"Scegli un metodo di pagamento.",
-      msg:function(p,d,c,pr,n,m,l){return "Ciao 4K IPTV! Vorrei ordinare "+p+" ("+d+", "+c+") per "+pr+". Nome: "+n+". Pagamento: "+m+(l?(". Link di pagamento: "+l):".");} }
+      msg:function(p,d,c,pr,n,m){return "Ciao! Sono "+n+" \ud83d\udc4b\n\n"+
+        "\ud83d\uded2 Ordine: "+p+"\n"+
+        "\u23f1 Durata: "+d+"\n"+
+        "\ud83d\udcfa Connessioni: "+c+"\n"+
+        "\ud83d\udcb0 Totale: "+pr+"\n"+
+        "\ud83d\udcb3 Pagamento: "+m+"\n\n"+
+        "Inviami i dati di pagamento per completare il mio ordine \u2705";} }
   };
   function detectLang(){ var p=location.pathname; if(/^\/fr(\/|$)/.test(p))return "fr"; if(/^\/us(\/|$)/.test(p))return "en"; if(/^\/it(\/|$)/.test(p))return "it"; var l=(document.documentElement.lang||"").slice(0,2); return LANGS[l]?l:"pt"; }
   LANGS.pt = { eyebrow:"Assinatura 4K IPTV", title:"Finalize seu pedido", sub:"Insira seus dados para ativar sua assinatura.",
     name:"Nome completo", namePh:"João Silva", phone:"Telefone", email:"Endereço de e-mail", emailPh:"voce@exemplo.com",
     pay:"Forma de pagamento", conn:"Conexões simultâneas", cU1:"Conexão", cU:"Conexões", duration:"Duração", bonus:"Bônus",
     total:"Total", submit:"Finalizar pedido", secure:"Suas informações são transmitidas com segurança.", guarantee:"Garantia de reembolso de 7 dias.",
-    months:"Meses", free:"Meses Grátis", okTitle:"Pedido recebido!", okBody:"Obrigado! Clique em \u201cPagar agora\u201d para concluir o pagamento, ou confirme no WhatsApp para ativar sua assinatura.",
+    months:"Meses", free:"Meses Grátis", okTitle:"Pedido recebido!", okBody:"Obrigado! Confirme no WhatsApp para concluir e ativar a sua assinatura.",
     paynow:"💳 Pagar agora", wa:"Confirmar no WhatsApp", again:"Fazer outro pedido",
     eName:"Digite seu nome.", ePhone:"Número inválido.", eEmail:"E-mail inválido.", ePay:"Escolha uma forma de pagamento.",
-    msg:function(p,d,c,pr,n,m,l){return "Olá 4K IPTV! Gostaria de pedir o "+p+" ("+d+", "+c+") por "+pr+". Nome: "+n+". Pagamento: "+m+(l?(". Link de pagamento: "+l):".");} };
+    msg:function(p,d,c,pr,n,m){return "Ol\u00e1! Sou "+n+" \ud83d\udc4b\n\n"+
+      "\ud83d\uded2 Pedido: "+p+"\n"+
+      "\u23f1 Dura\u00e7\u00e3o: "+d+"\n"+
+      "\ud83d\udcfa Conex\u00f5es: "+c+"\n"+
+      "\ud83d\udcb0 Total: "+pr+"\n"+
+      "\ud83d\udcb3 Pagamento: "+m+"\n\n"+
+      "Por favor, envie-me os dados de pagamento para concluir o meu pedido \u2705";} };
   var LANG = detectLang(), T = LANGS[LANG];
 
   var COUNTRIES=[{n:"United Kingdom",i:"GB",d:"+44",f:"🇬🇧"},{n:"United States",i:"US",d:"+1",f:"🇺🇸"},{n:"France",i:"FR",d:"+33",f:"🇫🇷"},{n:"Italy",i:"IT",d:"+39",f:"🇮🇹"},{n:"Ireland",i:"IE",d:"+353",f:"🇮🇪"},{n:"Germany",i:"DE",d:"+49",f:"🇩🇪"},{n:"Spain",i:"ES",d:"+34",f:"🇪🇸"},{n:"Belgium",i:"BE",d:"+32",f:"🇧🇪"},{n:"Switzerland",i:"CH",d:"+41",f:"🇨🇭"},{n:"Netherlands",i:"NL",d:"+31",f:"🇳🇱"},{n:"Canada",i:"CA",d:"+1",f:"🇨🇦"},{n:"Morocco",i:"MA",d:"+212",f:"🇲🇦"}];
@@ -170,7 +186,6 @@
       '<div class="fs-ok" data-ok>'+
         '<div class="fs-check"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="'+LIME+'" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>'+
         '<h3>'+T.okTitle+'</h3><p>'+T.okBody+'</p>'+
-        '<a class="fs-paynow" data-paylink target="_blank" rel="noopener">'+T.paynow+'</a>'+
         '<a class="fs-wa" data-wa target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.5.7 1.8.8 1.9.1.1.1.3 0 .5s-.2.3-.3.5-.3.4-.1.7c.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.2.7-.1.3.1 1.7.8 2 1 .3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>'+T.wa+'</a>'+
         '<button class="fs-again" data-again>'+T.again+'</button>'+
       '</div>';
@@ -229,19 +244,17 @@
     if(!(vN&&vP&&vE&&vPay)) return;
 
     var p=plan(), phone=(st.dial+" "+localPhone).trim(), tot=total();
-    var payLink=(CONFIG.PAYLINKS&&CONFIG.PAYLINKS[st.method])||(CONFIG.PAYLINKS&&CONFIG.PAYLINKS.default)||"";
     var connTxt=st.conn+" "+(st.conn>1?T.cU:T.cU1);
     var payload={ timestamp:new Date().toISOString(), site:location.hostname, plan:p.name, duration:durStr(p),
       bonus:(p.bonusMonths>0?("+"+p.bonusMonths+" "+T.free):""), connections:st.conn,
       unit_price:p.price.toFixed(2), total:tot.toFixed(2), currency:CONFIG.CURRENCY,
       name:name, phone:phone, email:email, dial:st.dial, country:st.country,
-      payment_method:PAY[st.method].label, payment_key:st.method, payment_link:payLink,
+      payment_method:PAY[st.method].label, payment_key:st.method,
       page:location.pathname, language:LANG, referrer:document.referrer||"" };
 
-    var msg=T.msg(p.name, durStr(p), connTxt, money(tot), name, PAY[st.method].label, payLink);
+    var msg=T.msg(p.name, durStr(p), connTxt, money(tot), name, PAY[st.method].label);
     var waUrl="https://wa.me/"+CONFIG.WHATSAPP+"?text="+encodeURIComponent(msg);
     modal.querySelector("[data-wa]").setAttribute("href",waUrl);
-    if(payLink) modal.querySelector("[data-paylink]").setAttribute("href",payLink);
 
     var btn=modal.querySelector("[data-submit]"); btn.disabled=true; btn.textContent="…";
     function done(){ try{window.open(waUrl,"_blank","noopener");}catch(_){}
