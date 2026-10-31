@@ -145,46 +145,54 @@
     }, 3000);
   });
 
-  /* Pricing connection stepper — scales the price by connections and updates the
-     WhatsApp order link. Each extra connection is $50 (15% off => $42.50). */
-  var CONN_ADD_NOW = 42.5;     // per extra connection, after 15% discount
-  var CONN_ADD_NORMAL = 50;    // per extra connection, normal price
+  /* Pricing connection stepper — price = base × (1 + 0.85 × (n − 1)); the buy button
+     opens the checkout page with the chosen plan and connections. */
+  var LANG = (document.documentElement.lang || "pt").slice(0, 2).toLowerCase();
+  var CHECKOUT = LANG === "en" ? "/us/checkout/" : LANG === "fr" ? "/fr/checkout/" : "/checkout/";
+  var PM_TXT = LANG === "en" ? ["One-time payment · just", "/ month"] : LANG === "fr" ? ["Paiement unique · soit", "/ mois"] : ["Pagamento único · só", "/ mês"];
+  var MONTHS = { Bronze: 12, Gold: 18, Platinum: 18, Exclusivo: 24, Exclusive: 24, Exclusif: 24 };
+  function scale(base, n) { return Math.round(base * (1 + 0.85 * (n - 1)) * 100) / 100; }
   document.querySelectorAll(".plan").forEach(function (plan) {
     var stepper = plan.querySelector(".stepper");
-    if (!stepper) return;
-    var numEl = stepper.querySelector(".step-num");
     var buy = plan.querySelector(".plan-buy");
+    var name = plan.getAttribute("data-plan") || "Gold";
+    var basePrice = parseFloat(plan.getAttribute("data-price")) || 0;
+    var baseNormal = parseFloat(plan.getAttribute("data-normal")) || 0;
     var amtEl = plan.querySelector(".plan-price .amt");
     var decEl = plan.querySelector(".plan-price .dec");
     var normalEl = plan.querySelector(".plan-normal");
-    var basePrice = parseFloat(plan.getAttribute("data-price")) || 0;
-    var baseNormal = parseFloat(plan.getAttribute("data-normal")) || 0;
-    var waBase = buy ? (buy.getAttribute("href") || "").split("?")[0] : null;
-    var tpl = buy ? buy.getAttribute("data-msg") : null;
-    var min = parseInt(stepper.getAttribute("data-min"), 10) || 1;
-    var max = parseInt(stepper.getAttribute("data-max"), 10) || 4;
-    var n = parseInt(stepper.getAttribute("data-conn"), 10) || 1;
+    var numEl = stepper ? stepper.querySelector(".step-num") : null;
+    var labelEl = stepper ? stepper.querySelector(".step-val span") : null;
+    var one = labelEl ? labelEl.textContent : "";
+    var min = 1, max = 5, n = 1;
+    var pmEl = null;
+    if (buy) { pmEl = document.createElement("span"); pmEl.className = "plan-pm"; buy.parentNode.insertBefore(pmEl, buy.nextSibling); }
 
     function render() {
-      numEl.textContent = n;
-      var now = basePrice + (n - 1) * CONN_ADD_NOW;
-      var normal = baseNormal + (n - 1) * CONN_ADD_NORMAL;
+      var now = scale(basePrice, n);
+      if (numEl) numEl.textContent = n;
+      if (labelEl && one) labelEl.textContent = n > 1 ? one.replace(/(ão|ion|ection)$/i, function (m) { return m.toLowerCase() === "ão" ? "ões" : m + "s"; }) : one;
       if (amtEl && decEl && basePrice) {
         var s = now.toFixed(2).split(".");
         amtEl.textContent = s[0];
         decEl.textContent = "." + s[1];
       }
-      if (normalEl && baseNormal) normalEl.textContent = "$" + normal.toFixed(2);
-      stepper.querySelectorAll(".step-btn").forEach(function (b) {
+      if (normalEl && baseNormal) normalEl.textContent = "$" + scale(baseNormal, n).toFixed(2);
+      if (stepper) stepper.querySelectorAll(".step-btn").forEach(function (b) {
         var d = parseInt(b.getAttribute("data-dir"), 10);
         b.disabled = (d < 0 && n <= min) || (d > 0 && n >= max);
       });
-      if (buy && waBase && tpl) {
-        var msg = tpl.replace("{n}", n).replace("{price}", now.toFixed(2));
-        buy.setAttribute("href", waBase + "?text=" + encodeURIComponent(msg));
+      if (pmEl) {
+        var months = parseInt(plan.getAttribute("data-months"), 10) || MONTHS[name] || 12;
+        pmEl.innerHTML = PM_TXT[0] + " <b>$" + (now / months).toFixed(2) + "</b> " + PM_TXT[1];
+      }
+      if (buy) {
+        buy.setAttribute("href", CHECKOUT + "?plan=" + encodeURIComponent(name) + "&n=" + n);
+        buy.removeAttribute("target");
+        buy.removeAttribute("rel");
       }
     }
-    stepper.querySelectorAll(".step-btn").forEach(function (b) {
+    if (stepper) stepper.querySelectorAll(".step-btn").forEach(function (b) {
       b.addEventListener("click", function () {
         var d = parseInt(b.getAttribute("data-dir"), 10);
         n = Math.min(max, Math.max(min, n + d));
