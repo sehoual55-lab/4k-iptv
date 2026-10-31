@@ -606,3 +606,8 @@ html[lang="fr"] .stepper::before{content:"Connexions"}
 .pz-ic{display:block;font-size:1.7rem;margin-bottom:10px}
 .pz-steps .step-item{padding-top:44px}
 @media(max-width:600px){.pz-t{min-width:520px;font-size:.85rem}.pz-t th,.pz-t td{padding:11px 10px}.pz-t td:first-child span{display:none}.pz-tw::after{content:attr(data-slide);display:block;position:sticky;left:0;padding:8px 12px;font-size:.75rem;color:var(--muted-2)}}
+/* logo: TV screen with 4K + "IPTV" (2026-10-31) */
+.brand .logo{display:block;width:46px;height:38px;flex:none}
+.brand span{font-size:0;gap:0}
+.brand span::before{content:none;display:none}
+.brand b{font-size:1.45rem;font-weight:900;letter-spacing:-.03em;color:var(--text)}
