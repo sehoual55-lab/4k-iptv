@@ -631,3 +631,4 @@ html[lang="fr"] .stepper::before{content:"Connexions"}
 .dv-t.on i,.dv-t:hover i{color:var(--neon)}.dv-t:hover{transform:translateY(-4px)}
 @media(max-width:1000px){.dv-tiles{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:640px){.dv-tiles{grid-template-columns:repeat(3,1fr);gap:10px}.dv-t{padding:16px 8px 14px}.dv-t i{width:36px;height:36px}.dv-t span{display:none}.dv-top{flex-direction:column;align-items:flex-start}.dv-big{text-align:left}}
+.plan-exclusive{overflow:visible}.plans-grid{padding-top:16px}
