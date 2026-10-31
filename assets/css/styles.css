@@ -611,3 +611,23 @@ html[lang="fr"] .stepper::before{content:"Connexions"}
 .brand span{font-size:0;gap:0}
 .brand span::before{content:none;display:none}
 .brand b{font-size:1.45rem;font-weight:900;letter-spacing:-.03em;color:var(--text)}
+/* numbered list (why choose) */
+.num-list{display:grid;grid-template-columns:1fr 1fr;gap:0 60px}
+.num-item{display:flex;gap:22px;padding:28px 0;border-top:1px solid var(--border)}
+.num-item .num{font-size:3.4rem;font-weight:900;line-height:1;color:transparent;-webkit-text-stroke:1.5px var(--neon);min-width:84px;letter-spacing:-.02em}
+.num-item h3{font-size:1.3rem;margin-bottom:8px}.num-item p{margin:0;font-size:.98rem}
+@media(max-width:760px){.num-list{grid-template-columns:1fr}.num-item{gap:16px;padding:22px 0}.num-item .num{font-size:2.6rem;min-width:64px}}
+/* device tiles */
+.dv-top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:30px}
+.dv-top h2{margin-bottom:8px}.dv-top .lead{margin:0}
+.dv-big{font-size:clamp(3.6rem,7vw,5.4rem);font-weight:900;color:var(--neon);letter-spacing:-.05em;line-height:.9;text-align:right;flex:none}
+.dv-big small{display:block;font-size:.8rem;letter-spacing:.16em;color:var(--muted-2);font-weight:800;text-transform:uppercase;margin-top:6px}
+.dv-tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.dv-t{padding:22px 14px 18px;border-radius:20px;background:var(--surface);border:1px solid var(--border);text-align:center;transition:border-color .25s,background .25s,transform .25s}
+.dv-t i{display:grid;place-items:center;width:46px;height:46px;margin:0 auto 14px;color:var(--text);transition:color .25s}
+.dv-t i svg{width:100%;height:100%}
+.dv-t b{display:block;font-size:1rem;margin-bottom:4px}.dv-t span{display:block;font-size:.76rem;color:var(--muted-2);line-height:1.4}
+.dv-t.on,.dv-t:hover{border-color:var(--neon);background:radial-gradient(100% 80% at 50% 0%,rgba(34,229,90,.22),var(--surface) 70%)}
+.dv-t.on i,.dv-t:hover i{color:var(--neon)}.dv-t:hover{transform:translateY(-4px)}
+@media(max-width:1000px){.dv-tiles{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:640px){.dv-tiles{grid-template-columns:repeat(3,1fr);gap:10px}.dv-t{padding:16px 8px 14px}.dv-t i{width:36px;height:36px}.dv-t span{display:none}.dv-top{flex-direction:column;align-items:flex-start}.dv-big{text-align:left}}
