@@ -145,6 +145,24 @@
     }, 3000);
   });
 
+  /* Hero poster wall: localized trending posters (falls back to the static ones) */
+  (function () {
+    var wall = document.querySelector(".p-wall");
+    if (!wall || !window.fetch) return;
+    var hl = (document.documentElement.lang || "pt-BR");
+    var lang = /^en/i.test(hl) ? "en-US" : /^fr/i.test(hl) ? "fr-FR" : "pt-BR";
+    fetch("https://api.themoviedb.org/3/trending/movie/week?api_key=" + TMDB_KEY + "&language=" + lang)
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var list = (d.results || []).filter(function (m) { return m.poster_path; });
+        var imgs = wall.querySelectorAll("img");
+        for (var i = 0; i < imgs.length && i < list.length; i++) {
+          imgs[i].src = "https://image.tmdb.org/t/p/w342" + list[i].poster_path;
+          imgs[i].alt = list[i].title || "";
+        }
+      }).catch(function () {});
+  })();
+
   /* Pricing connection stepper — price = base × (1 + 0.85 × (n − 1)); the buy button
      opens the checkout page with the chosen plan and connections. */
   var LANG = (document.documentElement.lang || "pt").slice(0, 2).toLowerCase();
