@@ -55,5 +55,17 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/iptv-4k/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/iptv-4k/",
+      "permanent": true
+    }
   ]
 }
